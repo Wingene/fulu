@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rlyt_window"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorComplete"
+                android:orientation="vertical">
+
+    <View
+        android:id="@+id/_center"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:layout_centerInParent="true"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/_center">
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:text="5:00"
+            android:textColor="#fff"
+            android:textSize="72dp"/>
+
+        <TextView
+            android:id="@+id/tv_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_time"
+            android:layout_centerInParent="true"
+            android:text="休息中"
+            android:textColor="#afff"
+            android:textSize="23dp"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

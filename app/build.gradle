@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "28.0.3"
+
+    defaultConfig {
+        flavorDimensions "app"
+        applicationId "cn.wingene.fulu"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    productFlavors {
+        fulu {
+            dimension = 'app'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    applicationVariants.all { variant ->
+        if (variant.buildType.getName().equals("release")) {
+            println "Change output apk name"
+            variant.outputs.each { output ->
+                output.outputFileName =variant.flavorName+"-"+ variant.versionName+".apk"
+            }
+        }
+    }
+    sourceSets {
+        main {
+            java.srcDir('src/main/kotlin')
+        }
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // test
+    testImplementation 'junit:junit:4.12'
+    testImplementation group: 'org.jetbrains.kotlin', name: 'kotlin-test-junit', version: '1.2.10'
+    //base
+    implementation "com.junze365:junze-java-core:1.8.0"
+    implementation "com.junze365:junze-android-widget:1.1.0@aar"
+    implementation "com.junze365:junze-android-frame:2.2.0@aar"
+}
